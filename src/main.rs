@@ -1,4 +1,4 @@
-use solum::prelude::*;
+use solum::{level::Planet, prelude::*};
 
 fn main() {
   App::new()
@@ -10,4 +10,6 @@ fn main() {
 
 fn setup(mut commands: Commands) {
   commands.spawn(PrimaryCamera);
+
+  commands.spawn(Planet { radius: 100.0, mass: 0.0 });
 }

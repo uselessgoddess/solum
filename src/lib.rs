@@ -54,7 +54,7 @@ pub mod prelude {
         .init_state::<Pause>()
         .enable_state_scoped_entities::<Pause>()
         .add_plugins((PanCamPlugin, HanabiPlugin, TweeningPlugin))
-        .add_plugins(ui::plugin);
+        .add_plugins((level::plugin, ui::plugin));
     }
   }
 }

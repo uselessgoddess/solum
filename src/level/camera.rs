@@ -20,6 +20,7 @@ fn spawn(query: Query<Entity, Added<PrimaryCamera>>, mut commands: Commands) {
           speed: 500.0,
           ..default()
         },
-      ));
+      ))
+      .insert(inspector_egui::bevy_egui::PrimaryEguiContext);
   }
 }

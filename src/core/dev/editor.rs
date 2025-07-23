@@ -1,45 +1,40 @@
 use {crate::prelude::*, std::any::TypeId};
 
-use bevy::{
-  asset::{ReflectAsset, UntypedAssetId},
-  reflect::TypeRegistry,
-  render::camera::Viewport,
-  window::{PrimaryWindow, Window},
-};
-
 use {
+  bevy::{
+    asset::{ReflectAsset, UntypedAssetId},
+    reflect::TypeRegistry,
+    render::camera::Viewport,
+    window::{PrimaryWindow, Window},
+  },
   bevy_inspector::{
     hierarchy::SelectedEntities, ui_for_entities_shared_components,
     ui_for_entity_with_children,
   },
-  inspector_egui::{
-    DefaultInspectorConfigPlugin, bevy_egui, bevy_inspector, egui,
-  },
 };
 
 use {
-  bevy_egui::{EguiContext, EguiContextSettings, EguiPostUpdateSet},
+  bevy_egui::{EguiContext, EguiContextSettings},
   egui_dock::{DockArea, DockState, NodeIndex, Style},
+  inspector_egui::{
+    DefaultInspectorConfigPlugin,
+    bevy_egui::{self, EguiPrimaryContextPass, PrimaryEguiContext},
+    bevy_inspector, egui,
+  },
 };
 
 pub fn plugin(app: &mut App) {
   app
-    .add_plugins(DefaultInspectorConfigPlugin)
     .add_plugins(bevy_egui::EguiPlugin::default())
+    .add_plugins(DefaultInspectorConfigPlugin)
     .insert_resource(UiState::new())
-    .add_systems(
-      PostUpdate,
-      show_ui_system
-        .before(EguiPostUpdateSet::ProcessOutput)
-        .before(bevy_egui::end_pass_system)
-        .before(TransformSystem::TransformPropagate),
-    )
-    .add_systems(PostUpdate, set_camera_viewport);
+    .add_systems(EguiPrimaryContextPass, show_ui_system)
+    .add_systems(PostUpdate, set_camera_viewport.after(show_ui_system));
 }
 
 fn show_ui_system(world: &mut World) {
   if let Ok(mut ctx) = world
-    .query_filtered::<&mut EguiContext, With<PrimaryWindow>>()
+    .query_filtered::<&mut EguiContext, With<PrimaryEguiContext>>()
     .single(world)
     .cloned()
   {
