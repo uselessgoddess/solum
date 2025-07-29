@@ -1,9 +1,11 @@
+mod marker;
 pub mod sensor;
 pub(crate) mod spawn;
 
 use crate::prelude::*;
 
 pub use {
+  marker::marker,
   sensor::{Affect, AppExt, Sensor, effect},
   spawn::Build,
 };

@@ -11,12 +11,13 @@ rand = { version = "0.9" }
 bevy = { version = "0.16.1" }
 
 # plugins
-avian2d = { version = "0.3", features = [] }
+avian = { package = "avian2d", version = "0.3", features = [] }
 inspector-egui = { package = "bevy-inspector-egui", version = "0.32" }
 pancam = { package = "bevy_pancam", version = "0.18" }
 hanabi = { package = "bevy_hanabi", version = "0.16", default-features = false, features = ["2d"] }
 lunex = { package = "bevy_lunex", version = "0.4", default-features = false }
 tweening = { package = "bevy_tweening", version = "0.13" }
+leafwing-input-manager = { version = "0.17" }
 
 egui_dock = { version = "0.16" }
 

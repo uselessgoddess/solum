@@ -35,10 +35,11 @@ pub mod prelude {
 
   pub use {
     super::core::*,
-    avian2d::prelude::*,
+    avian::prelude::*,
     bevy::prelude::*,
     debug::{AppExt, D, in_debug},
     hanabi::prelude::*,
+    leafwing_input_manager::prelude::*,
     lunex::*,
     pancam::*,
     std::time::Duration,

@@ -9,7 +9,8 @@ mod utils;
 
 pub use {
   ecs::{
-    Affect, AppExt as _, Sensor, TriggerExt as _, spawn::CommandsExt as _,
+    Affect, AppExt as _, Sensor, TriggerExt as _, marker,
+    spawn::CommandsExt as _,
   },
   transform::Transform2D,
   utils::type_name,
