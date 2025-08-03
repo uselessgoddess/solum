@@ -9,7 +9,7 @@ edition = "2024"
 rand = "0.9"
 
 # bevy
-bevy = { version = "0.16", features = ["wayland"] }
+bevy = { version = "0.16", features = [] }
 avian2d = { version = "0.3", default-features = false, features = [
     "2d",
     "f32",
