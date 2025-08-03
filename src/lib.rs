@@ -1,6 +1,6 @@
 #![cfg_attr(bevy_lint, feature(register_tool), register_tool(bevy))]
 
-use bevy::prelude::*;
+use crate::prelude::*;
 
 mod core;
 mod game;
@@ -49,5 +49,5 @@ pub enum AppSystems {
 }
 
 fn spawn_camera(mut commands: Commands) {
-  commands.spawn((Name::new("Camera"), Camera2d));
+  commands.spawn((Name::new("Camera"), PrimaryCamera));
 }

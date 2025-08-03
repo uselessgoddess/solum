@@ -9,11 +9,10 @@ use bevy::{
 use crate::{AppSystems, screens::Screen, theme::widget};
 
 pub(super) fn plugin(app: &mut App) {
-  // Spawn splash screen.
-  app.insert_resource(ClearColor(SPLASH_BACKGROUND_COLOR));
-  app.add_systems(OnEnter(Screen::Splash), spawn_splash_screen);
+  app
+    .insert_resource(ClearColor(SPLASH_BACKGROUND_COLOR))
+    .add_systems(OnEnter(Screen::Splash), spawn_splash_screen);
 
-  // Animate splash screen.
   app.add_systems(
     Update,
     (
@@ -23,20 +22,19 @@ pub(super) fn plugin(app: &mut App) {
       .run_if(in_state(Screen::Splash)),
   );
 
-  // Add splash timer.
-  app.register_type::<SplashTimer>();
-  app.add_systems(OnEnter(Screen::Splash), insert_splash_timer);
-  app.add_systems(OnExit(Screen::Splash), remove_splash_timer);
-  app.add_systems(
-    Update,
-    (
-      tick_splash_timer.in_set(AppSystems::TickTimers),
-      check_splash_timer.in_set(AppSystems::Update),
-    )
-      .run_if(in_state(Screen::Splash)),
-  );
+  app
+    .register_type::<SplashTimer>()
+    .add_systems(OnEnter(Screen::Splash), insert_splash_timer)
+    .add_systems(OnExit(Screen::Splash), remove_splash_timer)
+    .add_systems(
+      Update,
+      (
+        tick_splash_timer.in_set(AppSystems::TickTimers),
+        check_splash_timer.in_set(AppSystems::Update),
+      )
+        .run_if(in_state(Screen::Splash)),
+    );
 
-  // Exit the splash screen early if the player hits escape.
   app.add_systems(
     Update,
     enter_title_screen.run_if(
