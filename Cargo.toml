@@ -15,12 +15,18 @@ avian2d = { version = "0.3", default-features = false, features = [
     "f32",
     "parry-f32",
 ] }
-leafwing = { package = "leafwing-input-manager", version = "0.17", default-features = false, features = [
+leafwing-input-manager = { version = "0.17", default-features = false, features = [
     "mouse",
     "keyboard",
     "gamepad",
     "picking",
 ] }
+bevy_asset_loader = { version = "0.23", default-features = false, features = [
+    "2d",
+    "3d",
+] }
+ecs_tilemap = { package = "bevy_ecs_tilemap", version = "0.16" }
+seldom = { package = "seldom_state", version = "0.14", features = ["leafwing_input"] }
 editor_pls = { package = "bevy_editor_pls", version = "0.11", features = [
     "highlight_changes",
 ], optional = true }

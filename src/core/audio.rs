@@ -36,6 +36,14 @@ pub fn sound_effect(handle: Handle<AudioSource>) -> impl Bundle {
   (AudioPlayer(handle), PlaybackSettings::DESPAWN, SoundEffect)
 }
 
+/// A sound effect audio instance.
+pub fn sound_effect_with(
+  handle: Handle<AudioSource>,
+  playback: PlaybackSettings,
+) -> impl Bundle {
+  (AudioPlayer(handle), playback, SoundEffect)
+}
+
 /// [`GlobalVolume`] doesn't apply to already-running audio entities, so this system will update them.
 fn apply_global_volume(
   global_volume: Res<GlobalVolume>,

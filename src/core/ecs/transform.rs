@@ -63,6 +63,10 @@ impl Transform2D {
     Self::from_translation(Vec2::new(x, y))
   }
 
+  pub const fn layer(layer: f32) -> Self {
+    Self { layer, ..Self::IDENTITY }
+  }
+
   #[must_use]
   pub const fn with_scale(mut self, scale: Vec2) -> Self {
     self.scale = scale;
