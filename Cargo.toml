@@ -27,6 +27,10 @@ bevy_asset_loader = { version = "0.23", default-features = false, features = [
 ] }
 ecs_tilemap = { package = "bevy_ecs_tilemap", version = "0.16" }
 seldom = { package = "seldom_state", version = "0.14", features = ["leafwing_input"] }
+navigator = { package = "vleue_navigator", version = "0.12", features = [
+    "avian2d"
+] }
+big-brain = { version = "0.23" }
 editor_pls = { package = "bevy_editor_pls", version = "0.11", features = [
     "highlight_changes",
 ], optional = true }
@@ -43,6 +47,7 @@ tracing = { version = "0.1", features = [
 
 [patch.crates-io]
 bevy_editor_pls = { git = "https://github.com/benfrankel/bevy_editor_pls.git", branch = "bevy-0-16" }
+big-brain = { git = "https://github.com/zkat/big-brain", branch = "main" }
 
 [features]
 default = ["dev_native"]
@@ -66,7 +71,7 @@ dev_native = [
     # In-game bevy editor
     "dep:editor_pls",
 ]
-trace = ["bevy/trace", "bevy/trace_tracy"]
+trace = ["bevy/trace", "bevy/trace_tracy", "big-brain/trace", "navigator/tracing"]
 
 
 [package.metadata.bevy_cli.release]
