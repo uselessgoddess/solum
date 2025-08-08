@@ -1,8 +1,14 @@
+mod sync;
+
 use crate::{level::TilesAssets, prelude::*};
 
+pub use sync::{Storage, SyncSet, WeakPos};
+
 pub const TILE: f32 = 32.0;
+pub const METER: f32 = 1.0 * TILE;
 
 pub fn plugin(app: &mut App) {
+  app.add_plugins(sync::plugin);
   app.add_systems(
     Update,
     spawn.in_set(PausableSystems).in_set(AppSystems::Spawn),
@@ -14,14 +20,7 @@ pub struct Tilemap {
   pub size: TilemapSize,
   pub map_type: TilemapType,
   pub tile_size: TilemapTileSize,
-}
-
-#[derive(Component, Deref, DerefMut)]
-pub struct Storage {
-  pub entity: Entity,
-  pub translation: Vec2,
-  #[deref]
-  pub storage: TileStorage,
+  pub anchor: TilemapAnchor,
 }
 
 pub fn spawn(
@@ -29,7 +28,8 @@ pub fn spawn(
   tiles: Res<TilesAssets>,
   mut commands: Commands,
 ) {
-  let (tilemap_entity, &Tilemap { size, map_type, tile_size, .. }) = *tilemap;
+  let (tilemap_entity, &Tilemap { size, map_type, tile_size, anchor, .. }) =
+    *tilemap;
 
   let mut storage = TileStorage::empty(size);
   let mut tilemap = commands.entity(tilemap_entity);
@@ -60,7 +60,7 @@ pub fn spawn(
     storage,
     texture,
     tile_size,
-    anchor: TilemapAnchor::Center,
+    anchor,
     ..Default::default()
   });
 }

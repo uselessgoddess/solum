@@ -1,10 +1,26 @@
 use crate::prelude::*;
 
+#[derive(Debug, Hash, PartialEq, Eq, Clone, SystemSet)]
+pub enum Transform2DSystem {
+  /// Propagates changes in `Transform2D` to [`Transform`]
+  TransformPropagate,
+}
+
 pub fn plugin(app: &mut App) {
-  app
-    .register_type::<Transform2D>()
-    .add_systems(First, spawn)
-    .add_systems(PostUpdate, (sync_3d, sync_2d).chain());
+  app.configure_sets(
+    PostUpdate,
+    Transform2DSystem::TransformPropagate
+      .after(TransformSystem::TransformPropagate),
+  );
+  app.register_type::<Transform2D>();
+  app.add_systems(First, spawn);
+  app.add_systems(
+    PostUpdate,
+    (
+      sync_3d.before(TransformSystem::TransformPropagate),
+      sync_2d.in_set(Transform2DSystem::TransformPropagate),
+    ),
+  );
 }
 
 #[derive(Component)]

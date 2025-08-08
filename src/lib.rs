@@ -7,15 +7,20 @@ mod core;
 mod level;
 mod ui;
 //
-pub mod prelude;
 mod assets;
+pub mod prelude;
 
 pub struct GamePlugin;
 
 impl Plugin for GamePlugin {
   fn build(&self, app: &mut App) {
     app.add_plugins(core::plugin);
-    app.add_plugins((TilemapPlugin, StateMachinePlugin::default()));
+    app.add_plugins((
+      TilemapPlugin,
+      StateMachinePlugin::default(),
+      VleueNavigatorPlugin,
+      BigBrainPlugin::new(PreUpdate),
+    ));
 
     app.add_loading_state(
       LoadingState::new(Game::Loading).continue_to_state(Game::Title),

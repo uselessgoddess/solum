@@ -23,8 +23,13 @@ pub use bevy::{
 pub use {
   avian2d::prelude::*,
   bevy_asset_loader::prelude::*,
+  big_brain::prelude::*,
   ecs_tilemap::prelude::*,
-  leafwing_input_manager::{InputControlKind, prelude::*},
+  leafwing_input_manager::{
+    InputControlKind,
+    prelude::{ActionState, *},
+  },
+  navigator::prelude::*,
   rand::prelude::*,
   seldom::{
     StateMachinePlugin,

@@ -11,7 +11,7 @@ use crate::prelude::*;
 
 pub use {
   audio::{Music, SoundEffect, music, sound_effect, sound_effect_with},
-  ecs::{PausableSystems, Pause, Transform2D},
+  ecs::{PausableSystems, Pause, Transform2D, Transform2DSystem},
   timer::{LazyTimer, RegisterTimer},
   ysort::{BACKGROUND_OFFSET, YSort},
 };

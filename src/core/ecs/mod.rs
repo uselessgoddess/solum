@@ -5,7 +5,7 @@ use crate::prelude::*;
 
 pub use {
   pause::{PausableSystems, Pause},
-  transform::Transform2D,
+  transform::{Transform2D, Transform2DSystem},
 };
 
 pub fn plugin(app: &mut App) {

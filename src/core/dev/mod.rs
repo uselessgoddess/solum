@@ -5,7 +5,7 @@ mod ui;
 
 use bevy::{dev_tools::states::log_transitions, prelude::*};
 
-use crate::ui::Game;
+use crate::prelude::*;
 
 pub(super) fn plugin(app: &mut App) {
   app.add_systems(Update, log_transitions::<Game>);
@@ -17,4 +17,6 @@ pub(super) fn plugin(app: &mut App) {
     picking::plugin,
     ui::plugin,
   ));
+
+  app.insert_resource(NavMeshesDebug(RED_800.into()));
 }

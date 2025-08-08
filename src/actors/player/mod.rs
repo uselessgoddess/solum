@@ -31,7 +31,7 @@ pub struct Stats {
 
 impl Default for Stats {
   fn default() -> Self {
-    Self { speed: tilemap::TILE * 3.6 }
+    Self { speed: 3.6 * tilemap::METER }
   }
 }
 
@@ -41,7 +41,7 @@ fn spawn(
   mut materials: ResMut<Assets<ColorMaterial>>,
   mut commands: Commands,
 ) {
-  let radius = 0.5 * tilemap::TILE;
+  let radius = 0.5 * tilemap::METER;
 
   for (entity, _player) in query.iter() {
     let mesh = meshes.add(Circle::new(radius));
