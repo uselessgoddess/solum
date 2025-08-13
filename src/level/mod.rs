@@ -1,7 +1,10 @@
 mod camera;
 pub mod tilemap;
 
-use crate::{actors::Player, prelude::*};
+use crate::{
+  actors::{Enemy, Player, enemy},
+  prelude::*,
+};
 
 pub use tilemap::{Storage, Tilemap};
 

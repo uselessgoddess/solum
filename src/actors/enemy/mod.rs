@@ -1,8 +1,9 @@
-mod brain;
+pub mod brain;
 
 use crate::{level::tilemap, prelude::*};
 
 pub fn plugin(app: &mut App) {
+  app.add_plugins(brain::plugin);
   app.add_systems(
     Update,
     spawn.in_set(PausableSystems).in_set(AppSystems::Spawn),
@@ -10,6 +11,7 @@ pub fn plugin(app: &mut App) {
 }
 
 #[derive(Component, Reflect)]
+#[require(Stats)]
 pub struct Enemy;
 
 #[derive(Component, Reflect)]
@@ -36,8 +38,7 @@ fn spawn(
     let material = materials.add(Color::srgb(0.3, 0.2, 0.1));
 
     commands.entity(entity).insert((
-      RigidBody::Dynamic,
-      LockedAxes::ROTATION_LOCKED,
+      Controller::default(),
       Collider::circle(radius),
       YSort::default(),
       Mesh2d(mesh),
