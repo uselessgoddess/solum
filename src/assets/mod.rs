@@ -1,16 +1,5 @@
 use crate::prelude::*;
 
-pub fn plugin(app: &mut App) {
-  app.configure_loading_state(
-    LoadingStateConfig::new(Game::Loading)
-      .load_collection::<InteractionAssets>()
-      .load_collection::<CreditsAssets>()
-      .load_collection::<TilesAssets>()
-      .load_collection::<LevelAssets>()
-      .load_collection::<StepsAssets>(),
-  );
-}
-
 #[derive(AssetCollection, Resource, Reflect)]
 pub struct InteractionAssets {
   #[asset(path = "audio/sounds/button_click.ogg")]

@@ -39,6 +39,7 @@ pub use {
     },
     trigger,
   },
+  std::collections::VecDeque,
 };
 
 pub use crate::{
@@ -48,3 +49,27 @@ pub use crate::{
   core::*,
   ui::Game,
 };
+
+pub mod physics {
+  use avian2d::prelude::*;
+
+  pub const ALL: LayerMask = LayerMask::ALL;
+  pub const NONE: LayerMask = LayerMask::NONE;
+  pub const DEFAULT: LayerMask = LayerMask::DEFAULT;
+  //
+  pub const ENV: LayerMask = LayerMask(1 << 1);
+  pub const PROJ: LayerMask = LayerMask(1 << 2);
+  pub const ENEMY: LayerMask = LayerMask(1 << 3);
+
+  pub fn env() -> CollisionLayers {
+    CollisionLayers::new(ENV, ALL)
+  }
+
+  pub fn enemy() -> CollisionLayers {
+    CollisionLayers::new(ENEMY, ENV | PROJ)
+  }
+
+  pub fn projectile() -> CollisionLayers {
+    CollisionLayers::new(PROJ, ENEMY)
+  }
+}

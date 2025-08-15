@@ -63,25 +63,43 @@ pub struct ControllerSystemSet;
 #[derive(SystemSet, Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct ControllerInputsSet;
 
+pub enum Control {
+  /// apply linear velocity
+  Move(Vec2),
+  /// teleport to position
+  Warp(Vec2),
+  /// slide to position by offset
+  Slide(Vec2),
+}
+
 // todo!> find better name
 #[derive(Component, Default)]
 #[require(RigidBody::Dynamic, LockedAxes::ROTATION_LOCKED, LinearVelocity)]
 pub struct Controller {
-  desired: Option<Vec2>,
+  action: Option<Control>,
 }
 
 impl Controller {
-  pub fn desire(&mut self, warp: Vec2) {
-    if let Some(desired) = &mut self.desired {
-      *desired += warp;
-    } else {
-      self.desired = Some(warp);
-    }
+  pub fn control(&mut self, action: Control) {
+    self.action = Some(action);
+  }
+
+  pub fn slide(&mut self, slide: Vec2) -> Vec2 {
+    self.control(Control::Slide(slide));
+    slide
   }
 }
 
-fn apply(mut query: Query<(&mut Controller, &mut LinearVelocity)>) {
-  for (mut controller, mut velocity) in query.iter_mut() {
-    velocity.0 = controller.desired.take().unwrap_or(Vec2::ZERO);
+fn apply(
+  mut query: Query<(&mut Controller, &mut Transform2D, &mut LinearVelocity)>,
+) {
+  for (mut controller, mut transform, mut velocity) in query.iter_mut() {
+    if let Some(action) = controller.action.take() {
+      match action {
+        Control::Move(vel) => velocity.0 = vel,
+        Control::Warp(pos) => transform.translation = pos,
+        Control::Slide(slide) => transform.translation += slide,
+      }
+    }
   }
 }

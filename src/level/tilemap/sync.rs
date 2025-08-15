@@ -38,6 +38,7 @@ impl<'w> StorageItem<'w> {
       )
   }
 
+  #[allow(clippy::wrong_self_convention)]
   pub fn from_world_pos(&self, in_world: Transform2D) -> Option<TilePos> {
     let world = in_world.translation - self.transform.translation;
     TilePos::from_world_pos(
@@ -57,7 +58,7 @@ impl<'w> StorageItem<'w> {
     y: i32,
   ) -> Option<(Entity, TilePos)> {
     let pos =
-      TilePos::from_i32_pair(pos.x as i32 + x, pos.y as i32 + y, &self.size)?;
+      TilePos::from_i32_pair(pos.x as i32 + x, pos.y as i32 + y, self.size)?;
     self.storage.get(&pos).map(|entity| (entity, pos))
   }
 }

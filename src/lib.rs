@@ -1,4 +1,5 @@
 #![cfg_attr(bevy_lint, feature(register_tool), register_tool(bevy))]
+#![feature(iter_map_windows)]
 
 use crate::prelude::*;
 

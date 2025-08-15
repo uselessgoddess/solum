@@ -1,7 +1,3 @@
-//! The main menu (seen on the title screen).
-
-use bevy::prelude::*;
-
 use crate::{
   prelude::*,
   ui::{Game, Menu, widget},

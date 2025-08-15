@@ -11,8 +11,9 @@ use crate::prelude::*;
 
 pub use {
   audio::{Music, SoundEffect, music, sound_effect, sound_effect_with},
+  debug::{D, in_debug},
   ecs::{PausableSystems, Pause, Transform2D, Transform2DSystem},
-  physics::{Controller, ControllerInputsSet, ControllerSystemSet},
+  physics::{Control, Controller, ControllerInputsSet, ControllerSystemSet},
   timer::{LazyTimer, RegisterTimer},
   ysort::{BACKGROUND_OFFSET, YSort},
 };
@@ -22,6 +23,7 @@ pub(crate) use timer::background_timer;
 pub fn plugin(app: &mut App) {
   app.add_plugins((
     system::plugin,
+    debug::plugin,
     ecs::plugin,
     physics::plugin,
     audio::plugin,

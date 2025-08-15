@@ -1,4 +1,6 @@
 mod camera;
+pub mod env;
+pub mod nav;
 pub mod tilemap;
 
 use crate::{
@@ -6,7 +8,11 @@ use crate::{
   prelude::*,
 };
 
-pub use tilemap::{Storage, Tilemap};
+pub use {
+  env::Environment,
+  nav::{Agent, NavSystemSet, Path, Target},
+  tilemap::{Storage, Tilemap},
+};
 
 pub fn plugin(app: &mut App) {
   app.register_type::<LevelAssets>();
@@ -16,14 +22,15 @@ pub fn plugin(app: &mut App) {
       .load_collection::<TilesAssets>(),
   );
 
-  app.add_plugins((camera::plugin, tilemap::plugin));
+  app.add_plugins((camera::plugin, tilemap::plugin, nav::plugin, env::plugin));
   app.add_plugins(NavmeshUpdaterPlugin::<Collider, Obstacle>::default());
 }
 
-#[derive(Component)]
+#[derive(Component, Default, Copy, Clone)]
 pub struct Obstacle;
 
 #[derive(Component)]
+#[require(Visibility, Transform)]
 pub struct Level {
   /// `NavMesh` of level
   pub navmesh: Entity,
@@ -47,15 +54,10 @@ pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
     .id();
 
   commands
-    .spawn((
-      Name::new("Level"),
-      Transform::default(),
-      Visibility::default(),
-      StateScoped(Game::Gameplay),
-      Level { navmesh },
-    ))
+    .spawn((Name::new("Level"), StateScoped(Game::Gameplay), Level { navmesh }))
     .insert(children![
       (Name::new("Player"), Player, Obstacle),
+      (Name::new("Env"), Environment::default()),
       (
         Name::new("Tilemap"),
         Tilemap {
@@ -66,7 +68,7 @@ pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
         },
         Transform2D::layer(BACKGROUND_OFFSET),
       ),
-      (Name::new("Gameplay Music"), music(level_assets.music.clone()))
+      // (Name::new("Gameplay Music"), music(level_assets.music.clone()))
     ])
     .add_child(navmesh);
 }

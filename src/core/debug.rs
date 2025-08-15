@@ -1,11 +1,15 @@
 use crate::prelude::*;
 
+pub fn plugin(app: &mut App) {
+  app.register_type::<D>().init_resource::<D>();
+}
+
 pub fn dev() -> bool {
   cfg!(feature = "dev")
 }
 
 #[derive(
-  Debug, Resource, Default, Copy, Clone, Eq, PartialEq, Ord, PartialOrd,
+  Debug, Resource, Reflect, Default, Copy, Clone, Eq, PartialEq, Ord, PartialOrd,
 )]
 #[non_exhaustive]
 pub enum D {
