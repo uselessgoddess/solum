@@ -44,9 +44,9 @@ pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
       vec2(500.0, 500.0),
       vec2(-500.0, 500.0),
     ]),
-    agent_radius: 1.0 * tilemap::METER,
+    agent_radius: 0.3 * tilemap::METER,
     simplify: 4.0,
-    merge_steps: 1,
+    merge_steps: 5,
     ..default()
   };
   let navmesh = commands
@@ -56,7 +56,7 @@ pub fn spawn_level(mut commands: Commands, level_assets: Res<LevelAssets>) {
   commands
     .spawn((Name::new("Level"), StateScoped(Game::Gameplay), Level { navmesh }))
     .insert(children![
-      (Name::new("Player"), Player, Obstacle),
+      (Name::new("Player"), Player),
       (Name::new("Env"), Environment::default()),
       (
         Name::new("Tilemap"),

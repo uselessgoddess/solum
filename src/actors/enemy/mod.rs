@@ -10,10 +10,7 @@ pub fn plugin(app: &mut App) {
     brain::plugin,
     // boid::plugin,
   ));
-  app.add_systems(
-    Update,
-    spawn.in_set(PausableSystems).in_set(AppSystems::Spawn),
-  );
+  app.add_systems(Update, spawn.in_set(AppSystems::Spawn));
 }
 
 #[derive(Component, Reflect)]
@@ -67,7 +64,7 @@ fn spawn(
       (
         physics::enemy(),
         Controller::default(),
-        Collider::circle(radius),
+        Collider::circle(radius - physics::COLLIDER_OFFSET),
         YSort::default(),
         Mesh2d(mesh),
         MeshMaterial2d(material),

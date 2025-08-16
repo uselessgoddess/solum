@@ -15,9 +15,8 @@ pub fn plugin(app: &mut App) {
     .add_plugins((assets::plugin, state::plugin))
     .add_systems(
       Update,
-      spawn.in_set(PausableSystems).in_set(AppSystems::Spawn),
-    )
-    .add_systems(Update, steps.run_if(in_state(Game::Gameplay)));
+      (spawn, steps.run_if(in_state(Game::Gameplay))).in_set(AppSystems::Spawn),
+    );
 }
 
 #[derive(Component, Reflect)]
@@ -52,7 +51,7 @@ fn spawn(
       .insert((
         RigidBody::Dynamic,
         LockedAxes::ROTATION_LOCKED,
-        Collider::circle(radius),
+        Collider::circle(radius - physics::COLLIDER_OFFSET),
         YSort::default(),
         Mesh2d(mesh),
         MeshMaterial2d(material),

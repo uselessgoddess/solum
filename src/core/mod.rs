@@ -42,7 +42,8 @@ pub fn plugin(app: &mut App) {
       AppSystems::RecordInput,
       AppSystems::Update,
     )
-      .chain(),
+      .chain()
+      .in_set(PausableSystems),
   );
 }
 

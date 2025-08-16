@@ -12,7 +12,7 @@ pub fn thinker() -> ThinkerBuilder {
 pub struct Patrol;
 
 use {
-  crate::level::nav::{Agent, Path, Target},
+  crate::level::{Agent, Target},
   big_brain::prelude::ActionState,
 };
 

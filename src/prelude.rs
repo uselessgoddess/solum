@@ -72,4 +72,6 @@ pub mod physics {
   pub fn projectile() -> CollisionLayers {
     CollisionLayers::new(PROJ, ENEMY)
   }
+
+  pub const COLLIDER_OFFSET: f32 = 1.0;
 }
