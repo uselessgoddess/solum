@@ -30,6 +30,7 @@ pub use {
     prelude::{ActionState, *},
   },
   navigator::prelude::*,
+  ordered_float::OrderedFloat,
   rand::prelude::*,
   seldom::{
     StateMachinePlugin,

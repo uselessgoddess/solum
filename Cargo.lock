@@ -200,7 +200,7 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cab112f0a86d568ea0e627cc1d6be74a1e9cd55214684db5561995f6dad897c6"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -2447,7 +2447,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "79127ed59a85d7687c409e9978547cffb7dc79675355ed22da6b66fd5f6ead01"
 dependencies = [
  "itertools 0.11.0",
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -2666,7 +2666,7 @@ version = "0.22.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ad9cdb4b747e485a12abb0e6566612956c7a1bafa3bdb8d682c5b6d403589e48"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -2900,7 +2900,7 @@ dependencies = [
  "geographiclib-rs",
  "i_overlay",
  "log",
- "num-traits",
+ "num-traits 0.2.19",
  "robust",
  "rstar",
  "spade",
@@ -2913,7 +2913,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "75a4dcd69d35b2c87a7c83bce9af69fd65c9d68d3833a0ded568983928f3fc99"
 dependencies = [
  "approx",
- "num-traits",
+ "num-traits 0.2.19",
  "rayon",
  "rstar",
  "serde",
@@ -3304,7 +3304,7 @@ dependencies = [
  "exr",
  "gif",
  "image-webp",
- "num-traits",
+ "num-traits 0.2.19",
  "png",
  "qoi",
  "ravif",
@@ -3876,7 +3876,7 @@ dependencies = [
  "nalgebra-macros",
  "num-complex",
  "num-rational",
- "num-traits",
+ "num-traits 0.2.19",
  "simba",
  "typenum",
 ]
@@ -4075,7 +4075,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a5e44f723f1133c9deac646763579fdb3ac745e418f2a7af9cd0c431da1f20b9"
 dependencies = [
  "num-integer",
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -4084,7 +4084,7 @@ version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "73f88a1307638156682bada9d7604135552957b7818057dcef22705b4d509495"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -4104,7 +4104,7 @@ version = "0.1.46"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7969661fd2958a5cb096e56c8e1ad0444ac2bbcd0061bd28660485a44879858f"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -4115,7 +4115,16 @@ checksum = "f83d14da390562dca69fc84082e73e548e1ad308d24accdedd2720017cb37824"
 dependencies = [
  "num-bigint",
  "num-integer",
- "num-traits",
+ "num-traits 0.2.19",
+]
+
+[[package]]
+name = "num-traits"
+version = "0.1.43"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92e5113e9fd4cc14ded8e499429f396a20f98c772a47cc8622a736e1ec843c31"
+dependencies = [
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -4439,7 +4448,7 @@ dependencies = [
  "ndk 0.8.0",
  "ndk-context",
  "num-derive",
- "num-traits",
+ "num-traits 0.2.19",
  "oboe-sys",
 ]
 
@@ -4500,11 +4509,21 @@ dependencies = [
 
 [[package]]
 name = "ordered-float"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7eb5259643245d3f292c7a146b2df53bba24d7eab159410e648eb73dc164669d"
+dependencies = [
+ "num-traits 0.1.43",
+ "unreachable",
+]
+
+[[package]]
+name = "ordered-float"
 version = "4.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7bb71e1b3fa6ca1c61f383464aaf2bb0e2f8e772a1f01d486832464de363b951"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
 ]
 
 [[package]]
@@ -4566,8 +4585,8 @@ dependencies = [
  "log",
  "nalgebra",
  "num-derive",
- "num-traits",
- "ordered-float",
+ "num-traits 0.2.19",
+ "ordered-float 4.6.0",
  "rayon",
  "rustc-hash 2.1.1",
  "simba",
@@ -4592,8 +4611,8 @@ dependencies = [
  "log",
  "nalgebra",
  "num-derive",
- "num-traits",
- "ordered-float",
+ "num-traits 0.2.19",
+ "ordered-float 4.6.0",
  "rayon",
  "rustc-hash 2.1.1",
  "simba",
@@ -4714,7 +4733,7 @@ dependencies = [
  "glam 0.29.3",
  "hashbrown",
  "log",
- "num-traits",
+ "num-traits 0.2.19",
  "robust",
  "smallvec",
  "spade",
@@ -4959,7 +4978,7 @@ version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32cb0b9bc82b0a0876c2dd994a7e7a2683d3e7390ca40e6886785ef0c7e3ee31"
 dependencies = [
- "num-traits",
+ "num-traits 0.2.19",
  "rand 0.8.5",
 ]
 
@@ -4997,7 +5016,7 @@ dependencies = [
  "new_debug_unreachable",
  "noop_proc_macro",
  "num-derive",
- "num-traits",
+ "num-traits 0.2.19",
  "once_cell",
  "paste",
  "profiling",
@@ -5188,7 +5207,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "421400d13ccfd26dfa5858199c30a5d76f9c54e0dba7575273025b43c5175dbb"
 dependencies = [
  "heapless",
- "num-traits",
+ "num-traits 0.2.19",
  "smallvec",
 ]
 
@@ -5414,7 +5433,7 @@ checksum = "b3a386a501cd104797982c15ae17aafe8b9261315b5d07e3ec803f2ea26be0fa"
 dependencies = [
  "approx",
  "num-complex",
- "num-traits",
+ "num-traits 0.2.19",
  "paste",
  "wide",
 ]
@@ -5514,6 +5533,7 @@ dependencies = [
  "big-brain",
  "leafwing-input-manager",
  "log",
+ "ordered-float 0.5.2",
  "rand 0.9.2",
  "seldom_state",
  "tracing",
@@ -5527,7 +5547,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a14e31a007e9f85c32784b04f89e6e194bb252a4d41b4a8ccd9e77245d901c8c"
 dependencies = [
  "hashbrown",
- "num-traits",
+ "num-traits 0.2.19",
  "robust",
  "smallvec",
 ]
@@ -6107,6 +6127,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ebc1c04c71510c7f702b52b7c350734c9ff1295c464a03335b00bb84fc54f853"
 
 [[package]]
+name = "unreachable"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "382810877fe448991dfc7f0dd6e3ae5d58088fd0ea5e35189655f84e6814fa56"
+dependencies = [
+ "void",
+]
+
+[[package]]
 name = "uuid"
 version = "1.18.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6125,7 +6154,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "666b7727c8875d6ab5db9533418d7c764233ac9c0cff1d469aec8fa127597be2"
 dependencies = [
  "aligned-vec",
- "num-traits",
+ "num-traits 0.2.19",
  "wasm-bindgen",
 ]
 
@@ -6177,6 +6206,12 @@ dependencies = [
  "polyanya",
  "tracing",
 ]
+
+[[package]]
+name = "void"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6a02e4885ed3bc0f2de90ea6dd45ebcbb66dacffe03547fadbb0eeae2770887d"
 
 [[package]]
 name = "walkdir"
@@ -6490,7 +6525,7 @@ dependencies = [
  "ndk-sys 0.5.0+25.2.9519653",
  "objc",
  "once_cell",
- "ordered-float",
+ "ordered-float 4.6.0",
  "parking_lot",
  "profiling",
  "range-alloc",

@@ -23,8 +23,13 @@ pub fn plugin(app: &mut App) {
   );
 
   app.add_plugins((camera::plugin, tilemap::plugin, nav::plugin, env::plugin));
-  app.add_plugins(NavmeshUpdaterPlugin::<Collider, Obstacle>::default());
+  app.add_plugins(NavmeshUpdaterPlugin::<Collider, Difficulty>::default());
 }
+
+// todo!> find better name
+#[derive(Component, Default, Copy, Clone)]
+#[require(Obstacle)]
+pub struct Difficulty;
 
 #[derive(Component, Default, Copy, Clone)]
 pub struct Obstacle;

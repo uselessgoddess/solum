@@ -112,6 +112,10 @@ impl Transform2D {
   pub fn up(&self) -> Vec2 {
     self.rotation * Vec2::Y
   }
+
+  pub fn translation(&self) -> Vec2 {
+    self.translation
+  }
 }
 
 impl Default for Transform2D {

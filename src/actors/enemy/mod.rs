@@ -21,6 +21,7 @@ pub struct Enemy;
 pub struct Stats {
   pub vision: f32,
   pub speed: f32,
+  pub attack: Attack,
   pub patrol: Patrol,
 }
 
@@ -30,12 +31,26 @@ impl Default for Stats {
     Self {
       speed: 2.0 * tilemap::METER,
       vision: 10.0 * tilemap::METER,
+      attack: default(),
       patrol: default(),
     }
   }
 }
 
 // todo!> serializable parameter
+#[derive(Reflect)]
+pub struct Attack {
+  pub range: f32,
+  pub damage: f32,
+}
+
+impl Default for Attack {
+  fn default() -> Self {
+    // todo!> use solid user/enemy radius or else use ray/shape casting
+    Self { range: (0.5 + 0.33 + 0.25) * tilemap::METER, damage: 1.0 }
+  }
+}
+
 #[derive(Reflect)]
 pub struct Patrol {
   pub rays: u8,
@@ -60,15 +75,16 @@ fn spawn(
     let mesh = meshes.add(Circle::new(radius));
     let material = materials.add(Color::srgb(0.3, 0.2, 0.1));
 
-    commands.entity(entity).insert(brain::thinker()).insert(Boid(0.1)).insert(
-      (
+    commands
+      .entity(entity)
+      .insert((brain::thinker(), CollidingEntities::default()))
+      .insert((
         physics::enemy(),
         Controller::default(),
         Collider::circle(radius - physics::COLLIDER_OFFSET),
         YSort::default(),
         Mesh2d(mesh),
         MeshMaterial2d(material),
-      ),
-    );
+      ));
   }
 }
